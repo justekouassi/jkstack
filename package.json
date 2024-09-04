@@ -1,0 +1,12 @@
+{
+	"name": "my-boilerplate",
+	"version": "0.1",
+	"description": "A simple boilerplate template",
+	"bin": {
+		"mynext": "./mynext.js",
+		"mydjango": "./mydjango.js",
+		"myflutter": "./myflutter.js",
+		"myreactnative": "./myreactnative.js"
+	},
+	"type": "module"
+}
