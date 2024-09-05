@@ -1,8 +1,3 @@
-/**
-!.gitignore
-!*.js
-!*.md
-!*.json
-
 .vscode/
 .VSCodeCounter/
+test/
