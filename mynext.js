@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { execSync } from "child_process"
-import { existsSync, mkdirSync, writeFileSync } from "fs"
 import { join } from "path"
-import { prismaTs } from "./next_files/prisma.ts.js"
-import { schemaPrisma } from "./next_files/schema.prisma.js"
+import { prismaTs } from "./files/nextjs/prisma.ts.js"
+import { schemaPrisma } from "./files/nextjs/schema.prisma.js"
+import { createStructure } from "./helper.js"
 
 // Nom du projet en argument
 const projectName = process.argv[2]
@@ -24,32 +24,6 @@ execSync(
 	`pnpm install prisma @prisma/client @vercel/analytics @vercel/speed-insights`,
 	{ stdio: "inherit" }
 )
-
-/** Fonction pour créer les dossiers et fichiers */
-function createStructure(basePath, structure) {
-	Object.entries(structure).forEach(([dir, { files, directories = [] }]) => {
-		const fullPath = join(basePath, dir)
-		if (!existsSync(fullPath)) {
-			mkdirSync(fullPath, { recursive: true })
-		}
-
-		// Crée les fichiers avec leur contenu
-		Object.entries(files).forEach(([file, content]) => {
-			const filePath = join(fullPath, file)
-			if (!existsSync(filePath)) {
-				writeFileSync(filePath, content, "utf8")
-			}
-		})
-
-		// Crée les sous-dossiers
-		directories.forEach((subDir) => {
-			const subDirPath = join(fullPath, subDir)
-			if (!existsSync(subDirPath)) {
-				mkdirSync(subDirPath, { recursive: true })
-			}
-		})
-	})
-}
 
 /** Liste des dossiers et fichiers à créer avec leur contenu */
 const customStructure = {

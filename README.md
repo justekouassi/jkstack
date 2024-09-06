@@ -1,58 +1,71 @@
 # My Boilerplate
 
-jfuv
+**My Boilerplate** est un outil conçu pour automatiser la création d'architectures de projets dans différents frameworks, notamment [NextJS](https://nextjs.org), [Django](https://www.djangoproject.com), et [Flutter](https://flutter.dev). Il permet de configurer rapidement un projet avec la structure de dossiers, fichiers et configurations initiales spécifiques à vos besoins de développement.
 
 ## Sommaire
 
 - [My Boilerplate](#my-boilerplate)
 	- [Sommaire](#sommaire)
-	- [NextJS](#nextjs)
-		- [Installation](#installation)
-		- [Structure du projet](#structure-du-projet)
+	- [Contexte](#contexte)
+	- [Fonctionnalités](#fonctionnalités)
+	- [Prérequis](#prérequis)
+	- [Utilisation](#utilisation)
+	- [Structures des projets](#structures-des-projets)
+		- [Django](#django)
+		- [NextJS](#nextjs)
+		- [Flutter](#flutter)
 
-## NextJS
+## Contexte
 
-### Installation
+En tant que développeur, j'ai souvent dû recréer les mêmes structures de projets à chaque nouveau démarrage, que ce soit pour mes backends avec Django, mes apps web en NextJS, ou mes apps mobiles avec Flutter. Après avoir répété ce processus plusieurs fois, je me suis dit : "Il doit bien y avoir une façon de tout automatiser, non ?". Et voilà comment MyBoilerplate est né. Ces commandes personnalisées me permettent de lancer mes projets en quelques secondes, avec une architecture prête à l'emploi, configurée exactement comme je le veux.
 
-Suivez les étapes ci-dessous pour installer et configurer le projet sur votre machine locale.
+> **Disclaimer** : La structure proposée reflète MES préférences personnelles. Vous êtes libre de l'utiliser, l'adapter ou l'améliorer pour mieux correspondre à votre propre stack de développement.
 
-1. Clonez le dépôt :
+## Fonctionnalités
+
+- **Boilerplate NextJS** : Démarrer un projet NextJS version 14 avec l'App Router, TypeScript, Prisma, Tailwind CSS, quelques composants, quelques dépendances et des dossiers supplémentaires pour vous offrir une architecture optimisée dès le départ.
+- **Boilerplate Django** : Créez des projets Django avec les configurations de base, y compris les modules courants comme Django Rest Framework.
+- **Boilerplate Flutter** : Configurez rapidement des projets Flutter avec une architecture modulaire pour les applications mobiles.
+
+## Prérequis
+
+Assurez-vous d'avoir installé les éléments suivants sur votre machine :
+
+- [Node.js](https://nodejs.org) et [pnpm](https://pnpm.io) pour NextJS
+- [Python](https://www.python.org) et [pip](https://pip.pypa.io/en/stable) pour Django
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) pour Flutter
+
+## Utilisation
+
+1. Cloner le dépôt :
 
 ```sh
 git clone https://github.com/justekouassi/my_boilerplate.git
 ```
 
-2. Accédez au dossier du projet :
+2. Accéder au dossier du projet :
 
 ```sh
 cd my_boilerplate
 ```
 
-3. Installez les dépendances :
-
+3. Installer les scripts globalement
 ```sh
-pnpm install
+npm i -g .
 ```
 
-4. Configurez la base de données avec Prisma :
-
-- Créez un fichier .env à la racine du projet et configurez votre base de données (exemple avec PostgreSQL) :
-```conf
-DATABASE_URL="postgresql://user:password@localhost:5432/monprojet"
-```
-
-- Exécutez les migrations pour synchroniser la base de données :
+4. Pour créer un nouveau projet, exécuter l'une des commandes suivantes selon votre besoin :
 ```sh
-pnpx prisma migrate dev
+mynext monprojet_web # boilerplate NextJS
+mydjango monprojet_api # boilerplate Django
+myflutter monprojet_mobile # boilerplate Flutter
 ```
 
-5. Démarrez le serveur de développement :
+## Structures des projets
 
-```sh
-pnpm run dev
-```
+### Django
 
-### Structure du projet
+### NextJS
 
 ```txt
 MonProjet/
@@ -82,3 +95,4 @@ MonProjet/
 └── tsconfig.json            # Configuration TypeScript
 ```
 
+### Flutter
