@@ -2,19 +2,34 @@
 
 import { execSync } from "child_process"
 import { join } from "path"
-import { createStructure } from "./helper.js"
+import { createStructure, deleteStructure } from "./helper.js"
 import { requirementsTxt } from "./files/django/requirements.txt.js"
 import { gitignore } from "./files/django/gitignore.js"
+import { getAsgiPy } from "./files/django/asgi.py.js"
+import { consumersPy } from "./files/django/consumers.py.js"
+import { getRoutingPy } from "./files/django/routing.py.js"
+import { getUrlsPy } from "./files/django/project.urls.py.js"
+import { getWsgiPy } from "./files/django/wsgi.py.js"
+import { getSettingsPy } from "./files/django/settings.py.js"
+import { getAppUrlsPy } from "./files/django/app.urls.py.js"
 
-// Nom du projet en argument
+// Nom du projet et de l'app principales en arguments
 const projectName = process.argv[2]
+const appName = process.argv[3]
 if (!projectName) {
 	console.error("Vous devez spécifier un nom de projet.")
 	process.exit(1)
 }
+if (!appName) {
+	console.error("Vous devez spécifier un nom d'application.")
+	process.exit(1)
+}
 
 // Crée le projet avec des options préconfigurées
-execSync(`django-admin startproject ${projectName}`, { stdio: "inherit" })
+execSync(
+	`django-admin startproject ${projectName} && cd ${projectName} && python manage.py startapp ${appName}`,
+	{ stdio: "inherit" }
+)
 
 /** Liste des dossiers et fichiers à créer avec leur contenu */
 const customStructure = {
@@ -40,13 +55,53 @@ const customStructure = {
 			"dashboard.js": "",
 		},
 	},
+	[projectName]: {
+		files: {
+			"asgi.py": `${getAsgiPy(projectName)}`,
+			"consumers.py": `${consumersPy}`,
+			"routing.py": `${getRoutingPy(projectName)}`,
+			"settings.py": `${getSettingsPy(projectName, appName)}`,
+			"urls.py": `${getUrlsPy(projectName, appName)}`,
+			"wsgi.py": `${getWsgiPy(projectName)}`,
+		},
+	},
+	[appName]: {
+		files: {
+			"cron.py": "",
+			"urls.py": `${getAppUrlsPy(appName)}`,
+		},
+		directories: [
+			"modelAdmins",
+			"models",
+			"serializers",
+			"services",
+			"templates",
+			"templatetags",
+			"tests",
+			"views",
+		],
+	},
+}
+
+/** Liste des fichiers à supprimer */
+const filesToDelete = {
+	[appName]: {
+		files: {
+			"models.py": null,
+			"tests.py": null,
+			"views.py": null,
+		},
+	},
 }
 
 // Crée la structure personnalisée
 const projectPath = join(process.cwd(), projectName)
 createStructure(projectPath, customStructure)
 
+// supprimer les fichiers inutiles
+deleteStructure(projectPath, filesToDelete)
+
 // installation de bibliothèques
-execSync(`pip install -r requirements.txt`, { stdio: "inherit" })
+execSync(`pip install -r ${projectName}/requirements.txt`, { stdio: "inherit" })
 
 console.log("Projet créé avec succès.")
