@@ -4,7 +4,7 @@ import {
 	writeFileSync,
 	readdirSync,
 	rmdirSync,
-	unlinkSync
+	unlinkSync,
 } from "fs"
 import { join } from "path"
 
@@ -65,7 +65,7 @@ export function deleteStructure(basePath, structure) {
 		}
 	)
 
-	// Supprime le dossier principal après avoir vidé son contenu
+	// supprime le dossier principal après avoir vidé son contenu
 	Object.keys(structure).forEach((dir) => {
 		const fullPath = join(basePath, dir)
 		if (existsSync(fullPath) && readdirSync(fullPath).length === 0) {

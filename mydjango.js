@@ -25,9 +25,11 @@ if (!appName) {
 	process.exit(1)
 }
 
-// Crée le projet avec des options préconfigurées
+// crée le projet avec des options préconfigurées
+const projectInitializationScript = `django-admin startproject ${projectName}`
+const startFirstAppScript = `python manage.py startapp ${appName}`
 execSync(
-	`django-admin startproject ${projectName} && cd ${projectName} && python manage.py startapp ${appName}`,
+	`${projectInitializationScript} && cd ${projectName} && ${startFirstAppScript}`,
 	{ stdio: "inherit" }
 )
 

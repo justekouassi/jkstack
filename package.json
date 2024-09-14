@@ -1,12 +1,36 @@
 {
 	"name": "my-boilerplate",
-	"version": "0.1",
-	"description": "A simple boilerplate template",
+	"version": "0.1.0",
+	"description": "A boilerplate set for Django, NextJS and Flutter projects.",
+	"main": "index.js",
+	"type": "module",
 	"bin": {
 		"mynext": "./mynext.js",
 		"mydjango": "./mydjango.js",
 		"myflutter": "./myflutter.js",
-		"myreactnative": "./myreactnative.js"
+		"myboilerplate": "./index.js"
 	},
-	"type": "module"
+	"scripts": {
+		"lint": "eslint .",
+		"test": "jest",
+		"prepublishOnly": "pnpm test && pnpm run lint"
+	},
+	"author": "Juste Kouassi <kjuste02@gmail.com>",
+	"repository": "https://github.com/justekouassi/my_boilerplate",
+	"keywords": [
+		"boilerplate",
+		"nextjs",
+		"django",
+		"flutter",
+		"javascript"
+	],
+	"license": "MIT",
+	"dependencies": {
+		"commander": "^12.1.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.0.0",
+		"jest": "^29.0.0"
+	},
+	"packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
 }
