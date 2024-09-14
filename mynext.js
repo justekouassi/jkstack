@@ -13,15 +13,12 @@ if (!projectName) {
 	process.exit(1)
 }
 
-// Crée le projet avec create-next-app et les options configurées
+// création du projet avec des options préconfigurées et installation de bibliothèques
+const projectInitializationScript = `pnpx create-next-app@latest ${projectName} -v --ts --tailwind --src-dir --app --no-eslint --import-alias "@/*"`
+const librariesInstallationScript =
+	"pnpm install prisma @prisma/client @vercel/analytics @vercel/speed-insights"
 execSync(
-	`pnpx create-next-app@latest ${projectName} --ts --tailwind --src-dir --app`,
-	{ stdio: "inherit" }
-)
-
-// installation de bibliothèques
-execSync(
-	`pnpm install prisma @prisma/client @vercel/analytics @vercel/speed-insights`,
+	`${projectInitializationScript} && cd ${projectName} && ${librariesInstallationScript}`,
 	{ stdio: "inherit" }
 )
 

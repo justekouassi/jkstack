@@ -23,8 +23,8 @@ En tant que développeur, j'ai souvent dû recréer les mêmes structures de pro
 
 ## Fonctionnalités
 
-- **Boilerplate NextJS** : Démarrer un projet NextJS version 14 avec l'App Router, TypeScript, Prisma, Tailwind CSS, quelques composants, quelques dépendances et des dossiers supplémentaires pour vous offrir une architecture optimisée dès le départ.
-- **Boilerplate Django** : Créez des projets Django avec les configurations de base, y compris les modules courants comme Django Rest Framework.
+- **Boilerplate NextJS** : Fournit un projet NextJS version 14 avec l'App Router, TypeScript, Prisma, Tailwind CSS, quelques composants, quelques dépendances et des dossiers supplémentaires pour vous offrir une architecture optimisée dès le départ.
+- **Boilerplate Django** : Fournit un projet Django avec une première application et des configurations de base tels que Django Rest Framework, la gestion des web sockets, une base de données MySQL, etc.
 - **Boilerplate Flutter** : Configurez rapidement des projets Flutter avec une architecture modulaire pour les applications mobiles.
 
 ## Prérequis
@@ -65,6 +65,45 @@ myflutter monprojet_mobile # boilerplate Flutter
 
 ### Django
 
+```txt
+MonProjet/
+│
+├── MonProjet/                     # Répertoire de configuration globale
+│   ├── __init__.py
+│   ├── asgi.py                    # ASGI pour WebSockets ou async
+│   ├── consumers.py               # 
+│   ├── routing.py                 # 
+│   ├── settings.py                # 
+│   ├── urls.py                    # Configuration des routes principales
+│   └── wsgi.py                    # WSGI pour la production
+│
+├── MonApp/                        # Répertoire pour la première application
+│   ├── __init__.py
+│   ├── admin.py                   # Configuration de l'admin pour l'app
+│   ├── apps.py                    # 
+│   ├── cron.py                    # 
+│   ├── urls.py                    # 
+│   ├── migrations/                # Fichiers de migration pour la BDD
+│   ├── modelAdmins/               # Formulaires liés aux modèles ou personnalisés
+│   ├── models/                    # Modèles de données
+│   ├── serializers/               # 
+│   ├── services/                  # 
+│   ├── templates/                 # Routes spécifiques à l'app Templates spécifiques à l'app
+│   ├── templatetags/              # 
+│   ├── views/                     # Logiques de vues
+│   └── tests/                     # Tests unitaires pour l'app
+│
+├── static/                        # Fichiers statiques globaux (ex. Bootstrap, JS)
+│   ├── css/                       # Fichiers CSS
+│   ├── docs/                      # Fichiers documentation
+│   ├── js/                        # Fichiers JavaScript
+│   └── media/                     # Fichiers media
+│
+├── requirements.txt               # Liste des dépendances pour l'environnement virtuel
+├── manage.py                      # Script de gestion Django
+└── .env                           # Variables d'environnement (ne jamais inclure dans Git)
+```
+
 ### NextJS
 
 ```txt
@@ -96,3 +135,7 @@ MonProjet/
 ```
 
 ### Flutter
+
+```txt
+
+```
