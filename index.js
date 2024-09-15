@@ -8,10 +8,11 @@ program
 	.description("A boilerplate set for Django, Next.js, and Flutter projects")
 	.version("0.1.0")
 
-// Commande pour Next.js
+// Ajout d'une commande pour exécuter des scripts basés sur les options
 program
-	.command("mynext <projectName>")
-	.description("Create a Next.js boilerplate")
+	.option("-D, --django <projectName>", "Create a Django project and app")
+	.option("-F, --flutter <projectName>", "Create a Flutter project")
+	.option("-N, --next <projectName>", "Create a Next.js project")
 
 // Commande pour Django
 program
@@ -23,9 +24,14 @@ program
 	.command("myflutter <projectName>")
 	.description("Create a Flutter boilerplate")
 
+// Commande pour Next.js
+program
+	.command("mynext <projectName>")
+	.description("Create a Next.js boilerplate")
+
 // Parse les arguments et affiche l'aide si aucune commande n'est spécifiée
 program.parse(process.argv)
 
 if (!process.argv.slice(2).length) {
-	program.outputHelp().addHelpText("uiyf_h ")
+	program.outputHelp()
 }

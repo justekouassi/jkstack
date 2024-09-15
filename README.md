@@ -57,7 +57,7 @@ npm i -g .
 4. Pour créer un nouveau projet, exécuter l'une des commandes suivantes selon votre besoin :
 ```sh
 mynext monprojet_web # boilerplate NextJS
-mydjango monprojet_api # boilerplate Django
+mydjango monprojet app # boilerplate Django
 myflutter monprojet_mobile # boilerplate Flutter
 ```
 
