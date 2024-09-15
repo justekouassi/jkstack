@@ -1,5 +1,5 @@
 {
-	"name": "my-boilerplate",
+	"name": "jkstack",
 	"version": "0.1.0",
 	"description": "A boilerplate set for Django, NextJS and Flutter projects.",
 	"main": "index.js",
@@ -12,17 +12,15 @@
 	},
 	"scripts": {
 		"lint": "eslint .",
-		"test": "jest",
-		"prepublishOnly": "pnpm test && pnpm run lint"
+		"test": "jest"
 	},
 	"author": "Juste Kouassi <kjuste02@gmail.com>",
-	"repository": "https://github.com/justekouassi/my_boilerplate",
+	"repository": "https://github.com/justekouassi/jkstack",
 	"keywords": [
 		"boilerplate",
 		"nextjs",
 		"django",
-		"flutter",
-		"javascript"
+		"flutter"
 	],
 	"license": "MIT",
 	"dependencies": {

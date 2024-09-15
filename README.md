@@ -1,10 +1,10 @@
-# My Boilerplate
+# JK Stack
 
-**My Boilerplate** est un outil conçu pour automatiser la création d'architectures de projets dans différents frameworks, notamment [NextJS](https://nextjs.org), [Django](https://www.djangoproject.com), et [Flutter](https://flutter.dev). Il permet de configurer rapidement un projet avec la structure de dossiers, fichiers et configurations initiales spécifiques à vos besoins de développement.
+**JK Stack** est un outil conçu pour automatiser la création d'architectures de projets dans différents frameworks, notamment [NextJS](https://nextjs.org), [Django](https://www.djangoproject.com), et [Flutter](https://flutter.dev). Il permet de configurer rapidement un projet avec la structure de dossiers, fichiers et configurations initiales spécifiques à vos besoins de développement.
 
 ## Sommaire
 
-- [My Boilerplate](#my-boilerplate)
+- [JK Stack](#jk-stack)
 	- [Sommaire](#sommaire)
 	- [Contexte](#contexte)
 	- [Fonctionnalités](#fonctionnalités)
@@ -19,7 +19,7 @@
 
 En tant que développeur, j'ai souvent dû recréer les mêmes structures de projets à chaque nouveau démarrage, que ce soit pour mes backends avec Django, mes apps web en NextJS, ou mes apps mobiles avec Flutter. Après avoir répété ce processus plusieurs fois, je me suis dit : "Il doit bien y avoir une façon de tout automatiser, non ?". Et voilà comment MyBoilerplate est né. Ces commandes personnalisées me permettent de lancer mes projets en quelques secondes, avec une architecture prête à l'emploi, configurée exactement comme je le veux.
 
-> **Disclaimer** : La structure proposée reflète MES préférences personnelles. Vous êtes libre de l'utiliser, l'adapter ou l'améliorer pour mieux correspondre à votre propre stack de développement.
+> **Disclaimer** : La structure proposée reflète mes préférences personnelles. Vous êtes libre de l'utiliser, l'adapter ou l'améliorer pour mieux correspondre à votre propre stack de développement.
 
 ## Fonctionnalités
 
@@ -40,13 +40,13 @@ Assurez-vous d'avoir installé les éléments suivants sur votre machine :
 1. Cloner le dépôt :
 
 ```sh
-git clone https://github.com/justekouassi/my_boilerplate.git
+git clone https://github.com/justekouassi/jkstack.git
 ```
 
 2. Accéder au dossier du projet :
 
 ```sh
-cd my_boilerplate
+cd jkstack
 ```
 
 3. Installer les scripts globalement
