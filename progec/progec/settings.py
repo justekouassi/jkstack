@@ -1,8 +1,5 @@
-import { capitalizeFirstLetter } from "../../helper.js"
-
-export const getSettingsPy = (projectName, appName) => `
 """
-Django settings for ${projectName} project.
+Django settings for progec project.
 """
 
 from datetime import timedelta
@@ -12,13 +9,15 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xpoctdo%4qk3aix2d92v9nvzi)72eb=0eg*c$#uek&t-7hsw$2'
+SECRET_KEY = 'django-insecure-xpoctdo%3qk3aix2d92v9nvzi)72eb=0eg*c$#uek&t-7hsw$2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-# authorization
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
@@ -27,69 +26,7 @@ ALLOWED_HOSTS = [
     '192.168.46.96',
     '91.234.194.177',
     'justekouassi.com',
-    '${projectName}-api.justekouassi.com'
-]
-
-# Configurer les origines autorisées
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    'https://${projectName}-client.vercel.app',
-    'https://${projectName}-client.justekouassi.com',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    'https://${projectName}-client.vercel.app',
-    'https://${projectName}-client.justekouassi.com',
-]
-
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
-
-# CSRF_COOKIE_SECURE = False
-
-CSRF_COOKIE_HTTPONLY = True
-
-SESSION_COOKIE_SECURE = None
-
-SESSION_COOKIE_HTTPONLY = False
-
-# Permettre les en-têtes d'autorisation
-CORS_ALLOW_HEADERS = [
-    'Authorization',
-    "access-control-allow-credentials",
-    "content-type",
-    "X-Csrftoken"
-]
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    'https://${projectName}-client.vercel.app',
-    'https://${projectName}-client.justekouassi.com',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-CSRF_COOKIE_DOMAIN = [
-    "http://localhost:3000",
-    'https://${projectName}-client.vercel.app',
-    'https://${projectName}-client.justekouassi.com',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    'https://${projectName}-client.vercel.app',
-    'https://${projectName}-client.justekouassi.com',
-]
-
-INTERNAL_IPS = [
-    '0.0.0.0',
-    '127.0.0.1',
-    'localhost',
-    '192.168.46.96',
-    '91.234.194.177',
-    'justekouassi.com',
-    'jkwiz-api.justekouassi.com'
+    'progec-api.justekouassi.com'
 ]
 
 # Application definition
@@ -102,23 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    '${appName}.apps.${capitalizeFirstLetter(appName)}Config',
-    'corsheaders',
+    'backend.apps.BackendConfig',
     'rest_framework',
+    'rest_framework.authtoken',
     'import_export',
     'djangoql',
+    'django_crontab',
     'channels',
-    '${appName}.templatetags',
-    'django_flatpickr',
-    # 'drf_yasg',
-    # 'debug_toolbar',
-    '${appName}.templatetags'
+    'backend.templatetags'
 ]
-
-DEBUG_TOOLBAR_CONFIG = {
-	'SHOW_COLLAPSED': True,
-	'SHOW_TOOLBAR_CALLBACK': lambda request: True,
-}
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -136,20 +65,18 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = '${projectName}.urls'
+ROOT_URLCONF = 'progec.urls'
 
 TEMPLATES = [
     {
@@ -167,17 +94,24 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = '${projectName}.asgi.application'
-WSGI_APPLICATION = '${projectName}.wsgi.application'
+# liste des cron tabs
+CRONJOBS = [
+    ('*/1 * * * *', 'backend.cron.hello_world')
+]
+
+ASGI_APPLICATION = 'progec.asgi.application'
+WSGI_APPLICATION = 'progec.wsgi.application'
+
 
 # Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 LOCAL_DB = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'PORT': '3306',
         'HOST': 'localhost',
-        'NAME': '${projectName}',
+        'NAME': 'progec',
         'USER': 'root',
         'PASSWORD': '',
     }
@@ -187,7 +121,7 @@ LWS_DB = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'PORT': '3306',
-        'NAME': 'c2365491c_${projectName}',
+        'NAME': 'c2365491c_progec',
         'HOST': 'justekouassi.com',
         'USER': 'c2365491c_justekouassi',
         'PASSWORD': 'ornitomimus',
@@ -199,7 +133,7 @@ LWS_DB = {
     }
 }
 
-DATABASES = LOCAL_DB
+DATABASES = LWS_DB
 
 
 # Password validation
@@ -220,26 +154,32 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# caches
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     }
 }
 
+
 # Internationalization
+# https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'fr-FR'
+
 LANGUAGES = [
     ('fr', ('French')),
     ('en', ('English')),
 ]
 
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -252,7 +192,7 @@ STORAGES = {
     'default': {
         'BACKEND': 'django.core.files.storage.FileSystemStorage',
         'OPTIONS': {
-            'location': BASE_DIR / 'media',
+            'location': BASE_DIR / 'static/media',
         },
     },
     "staticfiles": {
@@ -262,18 +202,12 @@ STORAGES = {
 
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
+CORS_ALLOWED_ORIGINS = []
+
+
 # Default primary key field type
+# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# url slash
 APPEND_SLASH = True
-
-# emails
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'contact.sherpabank@gmail.com'
-EMAIL_HOST_PASSWORD = 'zcraallhbgbzdold'
-DEFAULT_FROM_EMAIL = 'contact.sherpabank@gmail.com'
-`

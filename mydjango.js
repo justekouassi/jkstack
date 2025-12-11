@@ -43,7 +43,10 @@ const customStructure = {
 		},
 	},
 	static: {
-		directories: ["css", "js", "docs", "media"],
+		directories: ["admin", "css", "djangoql", "docs", "js"],
+	},
+	"static/admin": {
+		directories: ["css", "js"],
 	},
 	"static/css": {
 		files: {
@@ -69,7 +72,6 @@ const customStructure = {
 	},
 	[appName]: {
 		files: {
-			"cron.py": "",
 			"urls.py": `${getAppUrlsPy(appName)}`,
 		},
 		directories: [
@@ -80,6 +82,7 @@ const customStructure = {
 			"templates",
 			"templatetags",
 			"tests",
+			"utils",
 			"views",
 		],
 	},
@@ -104,6 +107,6 @@ createStructure(projectPath, customStructure)
 deleteStructure(projectPath, filesToDelete)
 
 // installation de bibliothèques
-execSync(`pip install -r ${projectName}/requirements.txt`, { stdio: "inherit" })
+// execSync(`pip install -r ${projectName}/requirements.txt`, { stdio: "inherit" })
 
 console.log("Projet créé avec succès.")

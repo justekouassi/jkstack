@@ -1,6 +1,6 @@
 {
 	"name": "jkstack",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "A boilerplate set for Django, NextJS and Flutter projects.",
 	"main": "index.js",
 	"type": "module",
